@@ -1,0 +1,12 @@
+{
+  "name": "WebScrapperJs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/DannickBedard/WebScraper.git",
+  "author": "Dannick Bedard",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.2"
+  }
+}
