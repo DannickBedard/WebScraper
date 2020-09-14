@@ -1,7 +1,7 @@
 {
   "name": "WebScrapperJs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.mjs",
   "repository": "https://github.com/DannickBedard/WebScraper.git",
   "author": "Dannick Bedard",
   "license": "MIT",

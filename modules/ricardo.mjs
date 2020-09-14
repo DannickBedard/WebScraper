@@ -1,9 +1,8 @@
-const request = require('request');
-const cheerio = require('cheerio');
+import packageConfig from '../package.json';
+import { request }  from '../request';
+import { cheerio }  from '../cheerio';
 
-GetRicardoRecipeInfos('https://www.ricardocuisine.com/recettes/3856-pate-au-poulet')
-
-function GetRicardoRecipeInfos(url) {
+export function getRecipe(url) {
     request(url, (error, responde, html) => {
         if(!error && responde.statusCode == 200) {
             const $ = cheerio.load(html);
@@ -37,6 +36,8 @@ function GetRicardoRecipeInfos(url) {
 
             console.log(ingredients);
             console.log(preparations);
+            return {ingredient, preparations};
         }
     });
 }
+
