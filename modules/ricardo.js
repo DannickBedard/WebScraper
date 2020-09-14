@@ -1,10 +1,11 @@
-import packageConfig from '../package.json';
-import { request }  from '../request';
-import { cheerio }  from '../cheerio';
+const request = require( '../node_modules/request');
+const cheerio = require( '../node_modules/cheerio');
 
-export function getRecipe(url) {
-    request(url, (error, responde, html) => {
-        if(!error && responde.statusCode == 200) {
+exports.get = async function getRecipe(url) {
+    var ingredients = [];
+    var preparations = [];
+     await request(url, (error, responde, html) => {
+         if(!error && responde.statusCode == 200) {
             const $ = cheerio.load(html);
             
             const ingredient = $('.ingredients');
@@ -12,7 +13,7 @@ export function getRecipe(url) {
     
             const ingredientForm = ingredient.find('form');
 
-            var ingredients = [];
+            
 
             ingredientForm.find('ul, ol').each((i, el) => {
                 if ($(el).prev().is('h3')) {
@@ -23,7 +24,7 @@ export function getRecipe(url) {
                 });
             });
 
-            var preparations = [];
+          
             preparation.find('ul, ol').each((i, element) => {
                 if ($(element).prev().is('h3')) {
                     preparations.push(["", $(element).prev().text().trim()])
@@ -33,11 +34,8 @@ export function getRecipe(url) {
                 });
 
             });
-
-            console.log(ingredients);
-            console.log(preparations);
-            return {ingredient, preparations};
         }
+         return  {ingredients, preparations};
     });
 }
 
